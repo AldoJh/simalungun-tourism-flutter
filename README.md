@@ -23,7 +23,7 @@ Simalungun Tourism is a Flutter application that showcases the beautiful tourist
 
 ## Architecture
 
-The Simalungun Tourism Flutter application follows the principles of Clean Architecture. Clean Architecture is a software design pattern that promotes separation of concerns and maintainability. It consists of three main layers: Presentation, Domain, and Data.
+The Simalungun Tourism Flutter application follows the principles of `Clean Architecture`. Clean Architecture is a software design pattern that promotes separation of concerns and maintainability. It consists of three main layers: Presentation, Domain, and Data.
 
 In the Presentation layer, we implement the user interface using Flutter widgets. This layer is responsible for handling user interactions and displaying data to the user. We use the BLoC (Business Logic Component) pattern for state management in the Presentation layer.
 
