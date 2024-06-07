@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simalungun_tourism/common/const.dart';
+import 'package:simalungun_tourism/presentation/bloc/bottom_nav/bottom_nav_bloc.dart';
 import 'package:simalungun_tourism/presentation/bloc/profile/profile_bloc.dart';
 import 'package:simalungun_tourism/presentation/pages/home_page.dart';
 import 'package:simalungun_tourism/presentation/pages/news_page.dart';
@@ -18,7 +19,8 @@ class BottomNavpage extends StatefulWidget {
 }
 
 class _BottomNavpageState extends State<BottomNavpage> {
-  int _selectedIndex = 0;
+  GlobalKey _bottomNavigationKey = GlobalKey();
+
   static List<Widget> _widgetOptions = <Widget>[
     HomePage(),
     FestivalPage(),
@@ -26,11 +28,6 @@ class _BottomNavpageState extends State<BottomNavpage> {
     ProfilePage(),
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   void initState() {
@@ -40,35 +37,40 @@ class _BottomNavpageState extends State<BottomNavpage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+    return BlocBuilder<BottomNavBloc, BottomNavState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: Center(
+            child: _widgetOptions.elementAt(state is BottomNavChanged ? state.index : 0),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.rocket),
-            label: 'Festival',
+          bottomNavigationBar: BottomNavigationBar(
+            key: _bottomNavigationKey,
+            type: BottomNavigationBarType.fixed,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.rocket),
+                label: 'Festival',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.news),
+                label: 'Berita',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.person),
+                label: 'Profile',
+              ),
+            ],
+            currentIndex: state is BottomNavChanged ? state.index : 0,
+            selectedItemColor: constants.PrimaryColor,
+            unselectedItemColor: Colors.grey,
+            onTap:(value) => context.read<BottomNavBloc>().add(ChangeBottomNavEvent(value)),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.news),
-            label: 'Berita',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.person),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: constants.PrimaryColor,
-        unselectedItemColor: Colors.grey,
-        onTap: _onItemTapped,
-      ),
+        );
+      },
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:simalungun_tourism/data/datasource/local_datasource.dart';
 import 'package:simalungun_tourism/injection.dart';
+import 'package:simalungun_tourism/presentation/bloc/bottom_nav/bottom_nav_bloc.dart';
 import 'package:simalungun_tourism/presentation/bloc/festival/festival_bloc.dart';
 import 'package:simalungun_tourism/presentation/bloc/festival_detail/festival_detail_bloc.dart';
 import 'package:simalungun_tourism/presentation/bloc/forget_password/forget_password_bloc.dart';
@@ -55,6 +56,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => BottomNavBloc()..add(ChangeBottomNavEvent(0)),
+        ),
         BlocProvider(
           create: (context) => getIt<LoginBloc>(),
         ),

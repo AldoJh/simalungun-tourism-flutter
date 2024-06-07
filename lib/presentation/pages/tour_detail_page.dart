@@ -272,14 +272,15 @@ class _TourDetailPageState extends State<TourDetailPage>
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Icon(
                                           Icons.phone,
@@ -319,7 +320,7 @@ class _TourDetailPageState extends State<TourDetailPage>
                                   children: [
                                     Row(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Icon(
                                           Icons.star,
@@ -580,8 +581,8 @@ class reviewTabbar extends StatelessWidget {
                                 context: context,
                                 builder: (context) {
                                   return AlertDialog(
-                                                  backgroundColor: Colors.white,
-                                          surfaceTintColor: Colors.white,
+                                    backgroundColor: Colors.white,
+                                    surfaceTintColor: Colors.white,
                                     title: Text("Tambah ulasan"),
                                     content: Column(
                                       crossAxisAlignment:
@@ -630,16 +631,20 @@ class reviewTabbar extends StatelessWidget {
                                                     review: commentController
                                                         .text));
                                           },
-                                          child: Text("OK", style: TextStyle(
-                                                    color:
-                                                        constants.PrimaryColor),)),
+                                          child: Text(
+                                            "OK",
+                                            style: TextStyle(
+                                                color: constants.PrimaryColor),
+                                          )),
                                       TextButton(
                                           onPressed: () {
                                             context.pop();
                                           },
-                                          child: Text("Batal", style: TextStyle(
-                                                    color:
-                                                        constants.PrimaryColor),))
+                                          child: Text(
+                                            "Batal",
+                                            style: TextStyle(
+                                                color: constants.PrimaryColor),
+                                          ))
                                     ],
                                   );
                                 });

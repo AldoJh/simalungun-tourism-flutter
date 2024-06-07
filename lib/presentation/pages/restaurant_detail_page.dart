@@ -272,7 +272,8 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage>
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -588,8 +589,8 @@ class reviewTabbar extends StatelessWidget {
                               context: context,
                               builder: (context) {
                                 return AlertDialog(
-                                                backgroundColor: Colors.white,
-                                          surfaceTintColor: Colors.white,
+                                  backgroundColor: Colors.white,
+                                  surfaceTintColor: Colors.white,
                                   title: Text("Tambah ulasan"),
                                   content: Column(
                                     crossAxisAlignment:
@@ -639,16 +640,20 @@ class reviewTabbar extends StatelessWidget {
                                                       commentController.text));
                                           context.pop();
                                         },
-                                        child: Text("OK", style: TextStyle(
-                                                    color:
-                                                        constants.PrimaryColor),)),
+                                        child: Text(
+                                          "OK",
+                                          style: TextStyle(
+                                              color: constants.PrimaryColor),
+                                        )),
                                     TextButton(
                                         onPressed: () {
                                           context.pop();
                                         },
-                                        child: Text("Batal", style: TextStyle(
-                                                    color:
-                                                        constants.PrimaryColor),))
+                                        child: Text(
+                                          "Batal",
+                                          style: TextStyle(
+                                              color: constants.PrimaryColor),
+                                        ))
                                   ],
                                 );
                               },
