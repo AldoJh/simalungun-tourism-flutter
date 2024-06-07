@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -26,6 +28,7 @@ class MorePage extends StatelessWidget {
               var url = Uri.parse("https://demo.gariskode.com/kuisioner");
               if (await canLaunchUrl(url)) {
                 launchUrl(url);
+                log("Launching url");
               }
             },
             trailing: Icon(
