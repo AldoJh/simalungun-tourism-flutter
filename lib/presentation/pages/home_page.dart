@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simalungun_tourism/common/const.dart';
 import 'package:simalungun_tourism/common/helper.dart';
+import 'package:simalungun_tourism/presentation/bloc/bottom_nav/bottom_nav_bloc.dart';
 import 'package:simalungun_tourism/presentation/bloc/festival/festival_bloc.dart';
 import 'package:simalungun_tourism/presentation/bloc/festival_detail/festival_detail_bloc.dart';
 import 'package:simalungun_tourism/presentation/bloc/news/news_bloc.dart';
@@ -184,7 +185,6 @@ class _HomePageState extends State<HomePage> {
                         ButtomHomeCustom(
                             onTap: () {
                               context.goNamed(MorePage.routeName);
-                              
                             },
                             imageAssets: 'assets/icons/lainnya.png',
                             label: "Lainnya",
@@ -204,12 +204,22 @@ class _HomePageState extends State<HomePage> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black),
                           ),
-                          Text(
-                            "Lihat Semua",
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.normal,
-                                color: constants.PrimaryColor),
+                          TextButton(
+                            style: ButtonStyle(
+                                overlayColor: MaterialStateProperty.all(
+                                    Colors.transparent),
+                                padding:
+                                    MaterialStateProperty.all(EdgeInsets.zero)),
+                            onPressed: () => context
+                                .read<BottomNavBloc>()
+                                .add(ChangeBottomNavEvent(1)),
+                            child: Text(
+                              "Lihat Semua",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                  color: constants.PrimaryColor),
+                            ),
                           ),
                         ],
                       ),
@@ -265,12 +275,22 @@ class _HomePageState extends State<HomePage> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black),
                           ),
-                          Text(
-                            "Lihat Semua",
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.normal,
-                                color: constants.PrimaryColor),
+                          TextButton(
+                            style: ButtonStyle(
+                                overlayColor: MaterialStateProperty.all(
+                                    Colors.transparent),
+                                padding:
+                                    MaterialStateProperty.all(EdgeInsets.zero)),
+                            onPressed: () => context
+                                .read<BottomNavBloc>()
+                                .add(ChangeBottomNavEvent(2)),
+                            child: Text(
+                              "Lihat Semua",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                  color: constants.PrimaryColor),
+                            ),
                           ),
                         ],
                       ),
